@@ -3,6 +3,9 @@
   .price{
     text-align: end;
   }
+  .cheap{
+    color: colar
+  }
   .page-header{
     padding: 0;
   }
@@ -30,13 +33,14 @@
   const prices = document.querySelector("#prices")
 
   fetch(`https://dashboard.elering.ee/api/nps/price?start=${start.toISOString()}&end=${end.toISOString()}`).then(r=>r.json()).then(res=>{
-    const data = res.data.ee
+    const data  = res.data.ee
+    const cheap = data.map(row=>row.price).sort().slice(0,5)
     window.data = data
 
     let html = ""
     for (const row of data){
       const time = new Date(row.timestamp*1000);
-      html += `<tr><td>${time.toLocaleString('et-EE')}</td><td class="price">${row.price.toFixed(2)}</td></tr>`
+      html += `<tr><td>${time.toLocaleString('et-EE')}</td><td class="price ${if (cheap.includes(row.price)) 'cheap'}">${row.price.toFixed(2)}</td></tr>`
     }
     prices.innerHTML = html
   })
