@@ -1,6 +1,6 @@
 <html>
 <body>
-  <table border>
+  <table>
     <thead>
       <tr>
         <td>kuupaev</td>
