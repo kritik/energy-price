@@ -31,7 +31,8 @@
 
   fetch(`https://dashboard.elering.ee/api/nps/price?start=${start.toISOString()}&end=${end.toISOString()}`).then(r=>r.json()).then(res=>{
     const data = res.data.ee
-    console.log(data)
+    window.data = data
+
     let html = ""
     for (const row of data){
       const time = new Date(row.timestamp*1000);
