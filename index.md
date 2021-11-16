@@ -1,17 +1,26 @@
-<html>
-<body>
-  <table>
-    <thead>
-      <tr>
-        <td>kuupaev</td>
-        <td>hind</td>
-      </tr>
-    </thead>
-    <tbody  id="prices">
-      <tr><td colspan="2">Loading...</td></tr>
-    </tbody>
-  </table>
-</body>
+
+<style>
+  .price{
+    text-align: end;
+  }
+  .page-header{
+    padding: 0;
+  }
+</style>
+
+<table>
+  <thead>
+    <tr>
+      <td>kuupaev</td>
+      <td>hind</td>
+    </tr>
+  </thead>
+  <tbody  id="prices">
+    <tr><td colspan="2">Loading...</td></tr>
+  </tbody>
+</table>
+
+  
 <script>
   const today = new Date()
   const start = new Date(today)
@@ -26,9 +35,8 @@
     let html = ""
     for (const row of data){
       const time = new Date(row.timestamp*1000);
-      html += `<tr><td>${time.toLocaleString()}</td><td>${row.price.toFixed(2)}</td></tr>`
+      html += `<tr><td>${time.toLocaleString()}</td><td class="price">${row.price.toFixed(2)}</td></tr>`
     }
     prices.innerHTML = html
   })
 </script>
-</html>
