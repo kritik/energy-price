@@ -40,7 +40,7 @@
     let html = ""
     for (const row of data){
       const time = new Date(row.timestamp*1000);
-      html += `<tr><td>${time.toLocaleString('et-EE')}</td><td class="price ${if (cheap.includes(row.price)) 'cheap'}">${row.price.toFixed(2)}</td></tr>`
+      html += `<tr><td>${time.toLocaleString('et-EE')}</td><td class="price ${cheap.includes(row.price) ? 'cheap' : ''}">${row.price.toFixed(2)}</td></tr>`
     }
     prices.innerHTML = html
   })
