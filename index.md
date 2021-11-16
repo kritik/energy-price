@@ -26,7 +26,7 @@
     let html = ""
     for (const row of data){
       const time = new Date(row.timestamp*1000);
-      html += `<tr><td>${time.toLocaleString()}</td><td>${row.price}</td></tr>`
+      html += `<tr><td>${time.toLocaleString()}</td><td>${row.price.round(2)}</td></tr>`
     }
     prices.innerHTML = html
   })
