@@ -9,6 +9,9 @@
   .page-header{
     padding: 0;
   }
+  .day_space{
+    background: aliceblue;
+  }
 </style>
 
 <table>
@@ -39,9 +42,10 @@
 
     let html = ""
     for (const row of data){
-      const time = new Date(row.timestamp*1000);
+      const time = new Date(row.timestamp*1000).toLocaleString('et-EE');
       const cheapClass = cheap.includes(row.price) ? 'cheap' : ''
-      html += `<tr><td>${time.toLocaleString('et-EE')}</td><td class="price ${cheapClass}">${row.price.toFixed(2)}</td></tr>`
+      if (time.includes("00:00:00")) html += `<tr><td class="day_space" colspan="2"></td></tr>` // new day
+      html += `<tr><td>${time}</td><td class="price ${cheapClass}">${row.price.toFixed(2)}</td></tr>`
     }
     prices.innerHTML = html
   })
