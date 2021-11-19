@@ -26,7 +26,7 @@
   </tbody>
 </table>
 
-<script src="https://unpkg.com/pulltorefreshjs" />
+<script src="https://unpkg.com/pulltorefreshjs" ></script>
 <script>
   const today = new Date()
   const start = new Date(today)
