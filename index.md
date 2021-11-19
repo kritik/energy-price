@@ -26,7 +26,7 @@
   </tbody>
 </table>
 
-  
+<script src="https://unpkg.com/pulltorefreshjs" />
 <script>
   const today = new Date()
   const start = new Date(today)
@@ -49,6 +49,9 @@
     }
     prices.innerHTML = html
   })
+  
+  
+  PullToRefresh.init({ mainElement: 'body',onRefresh() {window.location.reload()} });
 </script>
 
 
