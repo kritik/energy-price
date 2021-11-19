@@ -51,7 +51,7 @@
   })
   
   
-  //PullToRefresh.init({ mainElement: 'body',onRefresh() {window.location.reload()} });
+  PullToRefresh.init({ mainElement: 'body',onRefresh() {window.location.reload()} });
 </script>
 
 
