@@ -35,6 +35,7 @@
     const end   = new Date(today)
     end.setHours(today.getHours()+24)
     const prices = document.querySelector("#prices")
+    prices.innerHTML = `<tr><td colspan="2">Loading...</td></tr>`
 
     fetch(`https://dashboard.elering.ee/api/nps/price?start=${start.toISOString()}&end=${end.toISOString()}`).then(r=>r.json()).then(res=>{
       const data  = res.data.ee
