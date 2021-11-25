@@ -14,15 +14,17 @@
   }
 </style>
 
+<button onclick="getData()">Uuenda</button>
 <table>
   <thead>
     <tr>
-      <td>kuupaev</td>
-      <td>hind</td>
+      <th>kuupaev</th>
+      <th>hind</th>
+      <th>ajani</th>
     </tr>
   </thead>
   <tbody  id="prices">
-    <tr><td colspan="2">Loading...</td></tr>
+    <tr><td colspan="3">Loading...</td></tr>
   </tbody>
 </table>
 
@@ -33,9 +35,9 @@
     const start = new Date(today)
     start.setHours(today.getHours()-1)
     const end   = new Date(today)
-    end.setHours(today.getHours()+24)
+    end.setHours(today.getHours()+24*2)
     const prices = document.querySelector("#prices")
-    prices.innerHTML = `<tr><td colspan="2">Loading...</td></tr>`
+    prices.innerHTML = `<tr><td colspan="3">Loading...</td></tr>`
 
     fetch(`https://dashboard.elering.ee/api/nps/price?start=${start.toISOString()}&end=${end.toISOString()}`).then(r=>r.json()).then(res=>{
       const data  = res.data.ee
@@ -45,9 +47,10 @@
       let html = ""
       for (const row of data){
         const time = new Date(row.timestamp*1000).toLocaleString('et-EE');
+        const diff = (row.timestamp-today.getTime()/1000)/(60 * 60);
         const cheapClass = cheap.includes(row.price) ? 'cheap' : ''
-        if (time.includes("00:00:00")) html += `<tr><td class="day_space" colspan="2"></td></tr>` // new day
-        html += `<tr><td>${time}</td><td class="price ${cheapClass}">${row.price.toFixed(2)}</td></tr>`
+        if (time.includes("00:00:00")) html += `<tr><td class="day_space" colspan="3"></td></tr>` // new day
+        html += `<tr><td>${time}</td><td class="price ${cheapClass}">${row.price.toFixed(2)}</td><td>${diff}</td></tr>`
       }
       prices.innerHTML = html
     })
