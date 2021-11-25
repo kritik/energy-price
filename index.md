@@ -18,9 +18,9 @@
 <table>
   <thead>
     <tr>
+      <th>id</th>
       <th>kuupaev</th>
       <th>hind</th>
-      <th>ajani</th>
     </tr>
   </thead>
   <tbody  id="prices">
@@ -45,12 +45,12 @@
       window.data = data
 
       let html = ""
-      for (const row of data){
+      for (let i=0;i<data.length;i++){
+        const row  = data[i];
         const time = new Date(row.timestamp*1000).toLocaleString('et-EE');
-        const diff = (row.timestamp-today.getTime()/1000)/(60 * 60);
         const cheapClass = cheap.includes(row.price) ? 'cheap' : ''
         if (time.includes("00:00:00")) html += `<tr><td class="day_space" colspan="3"></td></tr>` // new day
-        html += `<tr><td>${time}</td><td class="price ${cheapClass}">${row.price.toFixed(2)}</td><td>${diff}</td></tr>`
+        html += `<tr><td>${i}</td><td>${time}</td><td class="price ${cheapClass}">${row.price.toFixed(2)}</td></tr>`
       }
       prices.innerHTML = html
     })
