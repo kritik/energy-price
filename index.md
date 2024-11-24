@@ -28,7 +28,7 @@
   </tbody>
 </table>
 
-<script src="https://unpkg.com/pulltorefreshjs"></script>
+
 <script>
   function getData(){
     const today = new Date()
@@ -57,7 +57,6 @@
   }
   
   getData()
-  PullToRefresh.init({ mainElement: 'body',onRefresh(){ getData() }});
 </script>
 
 
