@@ -40,7 +40,7 @@
     prices.innerHTML = `<tr><td colspan="3">Loading...</td></tr>`
 
     //original https://dashboard.elering.ee/api/nps/price
-    fetch(`http://vpn.krylov.ee?start=${start.toISOString()}&end=${end.toISOString()}`).then(r=>r.json()).then(res=>{
+    fetch(`https://vpn.krylov.ee?start=${start.toISOString()}&end=${end.toISOString()}`).then(r=>r.json()).then(res=>{
       const data  = res.data.ee
       const cheap = data.map(row=>row.price).sort((a,b)=>a-b).slice(0,5)
       window.data = data
